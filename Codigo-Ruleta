@@ -1,0 +1,136 @@
+int ldrpin = A0;
+int ldrest;
+int butt1;
+int est1;
+int butt2;
+int est2;
+int l;
+int contador;
+void setup() {
+  for (int i = 3; i <= 11; i++) {
+    pinMode (i, OUTPUT);
+    pinMode (butt1, INPUT_PULLUP);
+    pinMode (butt2, INPUT_PULLUP);
+  }
+}
+
+void loop() {
+  contador = 1;
+  est1 = digitalRead(butt1);
+  est2 = digitalRead(butt2);
+  ldrest = analogRead(ldrpin);
+  if (butt1 == HIGH) {
+    secuencia1();
+  }
+  else {
+    return;
+  }
+
+  if (butt2 == HIGH && ldrest <= 900 && contador == 1) {
+    victoria();
+    contador = contador + 1;
+    secuencia2();
+  }
+
+  else {
+    derrota();
+    return;
+  }
+
+  if (butt2 == HIGH && ldrest <= 900 && contador == 2 ) {
+    victoria();
+    contador = contador + 1;
+    secuencia3();
+  }
+
+  else {
+    derrota();
+    return;
+  }
+
+  if (butt2 == HIGH && ldrest <= 900 && contador == 3) {
+    termino();
+    return;
+  }
+
+}//LLAVE VOID LOOP
+
+void secuencia1() {
+  for (int l = 3; l <= 11; l = l + 1) {
+    digitalWrite (l, HIGH);
+    delay (300);
+    digitalWrite (l, LOW);
+  }
+}
+
+void secuencia2() {
+  for (int l = 3; l <= 11; l = l + 1) {
+    digitalWrite (l, HIGH);
+    delay (150);
+    digitalWrite (l, LOW);
+  }
+}
+
+void secuencia3() {
+  for (int l = 3; l <= 11; l = l + 1) {
+    digitalWrite (l, HIGH);
+    delay (100);
+    digitalWrite (l, LOW);
+  }
+}
+void victoria() {
+  digitalWrite (3, HIGH);
+  delay (50);
+  digitalWrite (3, LOW);
+  digitalWrite (3, HIGH);
+  delay (50);
+  digitalWrite (3, LOW);
+  digitalWrite (3, HIGH);
+  delay (50);
+  digitalWrite (3, LOW);
+  digitalWrite (3, HIGH);
+  delay (50);
+  digitalWrite (3, LOW);
+  delay(50);
+  digitalWrite (3, HIGH);
+  delay (3000);
+}
+
+void derrota() {
+  digitalWrite (1, HIGH);
+  digitalWrite (3, HIGH);
+  digitalWrite (5, HIGH);
+  digitalWrite (7, HIGH);
+  digitalWrite (9, HIGH);
+  delay (500);
+  digitalWrite (1, LOW);
+  digitalWrite (3, LOW);
+  digitalWrite (5, LOW);
+  digitalWrite (7, LOW);
+  digitalWrite (9, LOW);
+  delay (500);
+  digitalWrite (1, HIGH);
+  digitalWrite (3, HIGH);
+  digitalWrite (5, HIGH);
+  digitalWrite (7, HIGH);
+  digitalWrite (9, HIGH);
+  delay (500);
+  digitalWrite (1, LOW);
+  digitalWrite (3, LOW);
+  digitalWrite (5, LOW);
+  digitalWrite (7, LOW);
+  digitalWrite (9, LOW);
+  delay (500);
+}
+void termino() {
+  for (int l = 3; l <= 11; l = l + 1) {
+    digitalWrite (l, HIGH);
+    delay (50);
+    digitalWrite (l, LOW);
+  }
+  for (int l = 11; l >= 3; l = l - 1) {
+    digitalWrite (l, HIGH);
+    delay (50);
+    digitalWrite (l, LOW);
+  }
+}
