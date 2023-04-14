@@ -4,11 +4,10 @@ int butt1;
 int est1;
 int butt2;
 int est2;
-int l;
 int contador;
 void setup() {
-  for (int i = 3; i <= 11; i++) {
-    pinMode (i, OUTPUT);
+  for (int l = 3; l <= 11; i++) {
+    pinMode (l, OUTPUT);
     pinMode (butt1, INPUT_PULLUP);
     pinMode (butt2, INPUT_PULLUP);
   }
